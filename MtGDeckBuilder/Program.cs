@@ -45,6 +45,8 @@ app.MapPost("/admin/scryfall/sync", async (ScryfallBulkImporterService importer)
 
 
 // On startup, load all cards from the database into the CardIndex singleton
+// This needs to happen before anything else is loaded (except for the User List) as all of the other data (decks, collections, etc)
+// stores a card ID number and retrieves the full card info from the CardIndex
 using (var scope = app.Services.CreateScope()) { 
     var cardRepo = scope.ServiceProvider.GetRequiredService<ICardRepository>();
     var cardIndex = scope.ServiceProvider.GetRequiredService<CardIndex>();

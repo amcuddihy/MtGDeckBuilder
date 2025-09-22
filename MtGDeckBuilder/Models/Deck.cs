@@ -13,4 +13,8 @@ public class Deck {
     public List<CardInDeck> Sideboard => AllCards.Where(dc => dc.Section == DeckSection.Sideboard).ToList();
     public List<CardInDeck> Commander => AllCards.Where(dc => dc.Section == DeckSection.Commander).ToList();
     public List<CardInDeck> InConsideration => AllCards.Where(dc => dc.Section == DeckSection.InConsideration).ToList();
+
+    public Card? FeaturedCard { get; set; } = new();
+    public int VersionId { get; set; } = 0;
+    public string VersionName { get; set; } = "";
 }
